@@ -1,3 +1,6 @@
+.inline-flex {
+  display: inline-flex;
+}
 body {
   background: url(https://hexschool.github.io/js-filter/assets/bg.jpg);
   background-size: cover;
@@ -47,7 +50,7 @@ body {
   margin: 0 0.625rem 1.25rem 0;
 }
 .btn-type:hover,
-.btn-type:active {
+.btn-type:active, .active {
   background: #f8d45a;
 }
 @media (max-width: 767px) {
@@ -151,6 +154,10 @@ body {
 .fa-caret-down {
   top: 9px;
   right: -15px;
+}
+.fa-caret-up:active,
+.fa-caret-down:active{
+  color: #899e39;
 }
 .hide{
   display: none;

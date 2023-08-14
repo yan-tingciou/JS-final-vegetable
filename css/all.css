@@ -1,3 +1,21 @@
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.inline-flex {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
 body {
   background: url(https://hexschool.github.io/js-filter/assets/bg.jpg);
   background-size: cover;
@@ -50,7 +68,7 @@ body {
 }
 
 .btn-type:hover,
-.btn-type:active {
+.btn-type:active, .active {
   background: #f8d45a;
 }
 
@@ -164,6 +182,11 @@ body {
 .fa-caret-down {
   top: 9px;
   right: -15px;
+}
+
+.fa-caret-up:active,
+.fa-caret-down:active {
+  color: #899e39;
 }
 
 .hide {

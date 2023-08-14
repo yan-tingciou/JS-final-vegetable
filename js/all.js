@@ -32,16 +32,18 @@ const render = function (array) {
       </tr>
     `;
     str += content;
-    showList.innerHTML = str;
   });
+  showList.innerHTML = str;  //移至forEach外，避免過度渲染網頁
 };
+const remove_active = document.querySelectorAll(".button-group > button");
+
 button_group.addEventListener("click", function (e) {
   if (e.target.nodeName == "BUTTON") {
-    let removeActive = document.querySelectorAll(".button-group > button");
-    removeActive.forEach((item) => {
+    remove_active.forEach((item) => {
       item.classList.remove("active");
     });
     e.target.classList.remove("active");
+    show_result.textContent = "";
     showList.innerHTML = `<tr>
          <td colspan="7" class="text-center p-3">資料載入中...</td>
        </tr>`;
@@ -77,6 +79,9 @@ const show_result = document.querySelector(".show-result");
 const crop_input = document.querySelector(".crop-input");
 
 searchBtn.addEventListener("click", function (e) {
+  remove_active.forEach((item) => {
+      item.classList.remove("active");
+    });
   if (searchInput.value.trim() == "") {
     alert("請輸入作物名稱");
   } else {
@@ -99,9 +104,9 @@ searchBtn.addEventListener("click", function (e) {
     }
   }
 });
-//按enter也可以搜尋
+//按enter可以新增一筆代辦事項，e.code改為e.key，使英文與數字鍵盤的 Enter 均納入監聽範圍
 wrap.addEventListener("keyup", function (e) {
-  if (e.code == "Enter") {
+  if (e.key == "Enter") {
     searchBtn.click();
   }
 });
@@ -110,8 +115,9 @@ wrap.addEventListener("keyup", function (e) {
 const sort_select = document.querySelector(".sort-select");
 sort_select.addEventListener("click", function (e) {
   if (e.target.value === "排序篩選") {
+    render(filterArray);
     return;
-  } else if (e.target.value === "依上價排序") {
+  }else if (e.target.value === "依上價排序") {
     filterArray.sort(function (a, b) {
       return a.上價 - b.上價;
     });
